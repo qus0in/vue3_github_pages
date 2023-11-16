@@ -1,11 +1,13 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import vue from '@vitejs/plugin-vue';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
+  
   if (command == "build") {
+    const { GITHUB_REPOSITORY } = process.env;
     return {
       plugins: [vue()],
       resolve: {
@@ -13,7 +15,7 @@ export default defineConfig(({ command }) => {
           "@": fileURLToPath(new URL("./src", import.meta.url)),
         },
       },
-      base: "/vue3_github_pages/", // Repository 이름
+      base: `/{GITHUB_REPOSITORY.split('/')[1]}/`, // Repository 이름
     };
   } else {
     return {
