@@ -15,7 +15,7 @@ export default defineConfig(({ command }) => {
           "@": fileURLToPath(new URL("./src", import.meta.url)),
         },
       },
-      base: `/{GITHUB_REPOSITORY.split('/')[1]}/`, // Repository 이름
+      base: `/${GITHUB_REPOSITORY.split('/')[1]}/`, // Repository 이름
     };
   } else {
     return {
